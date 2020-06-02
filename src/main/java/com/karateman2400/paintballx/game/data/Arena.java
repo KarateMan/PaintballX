@@ -14,6 +14,24 @@ public class Arena {
     private int maxPlayers;
     private int minPlayers;
 
+    public Arena() {
+
+    }
+
+    public Arena(String name) {
+        this.name = name;
+    }
+
+    public Arena(String name, Location lobbySpawn, Location redSpawn, Location blueSpawn, Location endSpawn, int maxPlayers, int minPlayers) {
+        this.name = name;
+        this.lobbySpawn = lobbySpawn;
+        this.redSpawn = redSpawn;
+        this.blueSpawn = blueSpawn;
+        this.endSpawn = endSpawn;
+        this.maxPlayers = maxPlayers;
+        this.minPlayers = minPlayers;
+    }
+
     public String getName() {
         return name;
     }
