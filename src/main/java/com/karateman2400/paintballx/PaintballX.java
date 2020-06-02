@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.karateman2400.paintballx.game.GameObject;
 import com.karateman2400.paintballx.game.data.Arena;
+import com.karateman2400.paintballx.game.data.GameLocation;
+import com.karateman2400.paintballx.game.data.TestArena;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
@@ -26,13 +28,13 @@ public class PaintballX extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this, this);
         instance = this;
 
-        Arena a = new Arena("Test");
+        TestArena a = new TestArena("Test");
+        a.setBlueSpawn(new GameLocation());
+        a.setRedSpawn(new GameLocation());
+        a.setLobbySpawn(new GameLocation());
+        a.setEndSpawn(new GameLocation());
         a.setMaxPlayers(1);
         a.setMinPlayers(0);
-        a.setBlueSpawn(new Location(Bukkit.getWorlds().get(0), 1, 1, 1));
-        a.setRedSpawn(new Location(Bukkit.getWorlds().get(0), 1, 1, 1));
-        a.setLobbySpawn(new Location(Bukkit.getWorlds().get(0), 1, 1, 1));
-        a.setEndSpawn(new Location(Bukkit.getWorlds().get(0), 1, 1, 1));
         getLogger().log(Level.INFO, "tttt");
         testArena(a);
     }
@@ -46,7 +48,7 @@ public class PaintballX extends JavaPlugin implements Listener {
 
     }
 
-    public void testArena(Arena arena) {
+    public void testArena(TestArena arena) {
         try {
             File fd = new File(this.getDataFolder(), "arenas.json");
             FileWriter fw = new FileWriter(fd);
