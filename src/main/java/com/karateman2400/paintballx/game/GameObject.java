@@ -35,7 +35,7 @@ public class GameObject implements Listener {
     public boolean isJoinable() {
         if(gameStatus.getGameState() == GameStatus.GameState.WAITING) return true;
 
-        // TODO: Check Arena max players against current players
+        if(gameArena.getMaxPlayers() > gamePlayerList.size()) return true;
 
         return false;
     }
