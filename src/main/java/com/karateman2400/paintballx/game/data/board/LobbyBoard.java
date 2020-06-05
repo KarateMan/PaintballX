@@ -13,7 +13,7 @@ public class LobbyBoard extends GameBoard {
     }
 
     @Override
-    public void updateBoard(GameObject gameObject) {
+    public void updateBoard(GameObject gameObject, int time) {
         List<GamePlayer> gamePlayerList = gameObject.getGamePlayerList();
         // TODO: Send Board to PlayerList
     }

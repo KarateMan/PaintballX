@@ -15,6 +15,6 @@ public abstract class GameBoard {
         return arena;
     }
 
-    public abstract void updateBoard(GameObject gameObject);
+    public abstract void updateBoard(GameObject gameObject, int time);
 
 }

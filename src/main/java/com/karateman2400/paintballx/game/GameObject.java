@@ -6,6 +6,7 @@ import com.karateman2400.paintballx.game.data.gameinfo.GameStatus;
 import com.karateman2400.paintballx.game.data.playerinfo.GamePlayer;
 import com.karateman2400.paintballx.game.listeners.GameJoinListener;
 import com.karateman2400.paintballx.game.listeners.GameLeaveListener;
+import com.karateman2400.paintballx.game.listeners.ScoreboardUpdateListener;
 import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
@@ -22,14 +23,7 @@ public class GameObject implements Listener {
 
         PaintballX.getInstance().getServer().getPluginManager().registerEvents(new GameJoinListener(this), PaintballX.getInstance());
         PaintballX.getInstance().getServer().getPluginManager().registerEvents(new GameLeaveListener(this), PaintballX.getInstance());
-    }
-
-    public GameStatus getGameStatus() {
-        return gameStatus;
-    }
-
-    public List<GamePlayer> getGamePlayerList() {
-        return gamePlayerList;
+        PaintballX.getInstance().getServer().getPluginManager().registerEvents(new ScoreboardUpdateListener(this), PaintballX.getInstance());
     }
 
     public boolean isJoinable() {
@@ -42,6 +36,18 @@ public class GameObject implements Listener {
 
     public void forceEnd() {
         // TODO: Run Force End Processes
+    }
+
+    public GameStatus getGameStatus() {
+        return gameStatus;
+    }
+
+    public List<GamePlayer> getGamePlayerList() {
+        return gamePlayerList;
+    }
+
+    public GameArena getGameArena() {
+        return gameArena;
     }
 
 }

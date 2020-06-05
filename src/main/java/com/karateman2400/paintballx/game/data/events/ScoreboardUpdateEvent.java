@@ -10,13 +10,19 @@ public class ScoreboardUpdateEvent extends Event {
     private static final HandlerList HANDLERS = new HandlerList();
 
     private GameBoard board;
+    private GameObject gameObject;
 
-    public ScoreboardUpdateEvent(GameBoard board) {
+    public ScoreboardUpdateEvent(GameBoard board, GameObject gameObject) {
         this.board = board;
+        this.gameObject = gameObject;
     }
 
     public GameBoard getGameBoard() {
         return board;
+    }
+
+    public GameObject getGameObject() {
+        return gameObject;
     }
 
     @Override

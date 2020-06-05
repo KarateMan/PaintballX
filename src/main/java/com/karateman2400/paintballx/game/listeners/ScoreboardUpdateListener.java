@@ -15,6 +15,8 @@ public class ScoreboardUpdateListener implements Listener {
 
     @EventHandler
     public void onScoreboardUpdate(ScoreboardUpdateEvent event) {
-        event.getGameBoard().updateBoard(gameObject);
+        if(!gameObject.equals(event.getGameObject())) return;
+
+        event.getGameBoard().updateBoard(gameObject, gameObject.getGameStatus().getGameTimer().getTimeToStart());
     }
 }

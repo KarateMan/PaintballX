@@ -1,6 +1,9 @@
 package com.karateman2400.paintballx.game.data.gameinfo;
 
 import com.karateman2400.paintballx.PaintballX;
+import com.karateman2400.paintballx.game.GameObject;
+import com.karateman2400.paintballx.game.data.board.LobbyBoard;
+import com.karateman2400.paintballx.game.data.events.ScoreboardUpdateEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class GameTimer {
@@ -12,7 +15,7 @@ public class GameTimer {
 
     private int timeToStart = 0;
 
-    public void beginLongTimer() {
+    public void beginLongLobbyTimer(GameObject gameObject) {
         cancelTimer();
         timeToStart = LONG_START;
 
@@ -20,12 +23,13 @@ public class GameTimer {
             @Override
             public void run() {
                 if(timeToStart != 0) --timeToStart;
-                // TODO: Send Scoreboard Update
+                LobbyBoard board = new LobbyBoard(gameObject.getGameArena());
+                PaintballX.getInstance().getServer().getPluginManager().callEvent(new ScoreboardUpdateEvent(board, gameObject));
             }
-        }.runTaskTimerAsynchronously(PaintballX.getInstance(), 0, 20);
+        }.runTaskTimer(PaintballX.getInstance(), 0, 20);
     }
 
-    public void beginShortTimer() {
+    public void beginShortLobbyTimer(GameObject gameObject) {
         cancelTimer();
         timeToStart = SHORT_START;
 
@@ -35,7 +39,11 @@ public class GameTimer {
                 if(timeToStart != 0) --timeToStart;
                 // TODO: Send Scoreboard Update
             }
-        }.runTaskTimerAsynchronously(PaintballX.getInstance(), 0, 20);
+        }.runTaskTimer(PaintballX.getInstance(), 0, 20);
+    }
+
+    public void beginGameTimer(GameObject gameObject) {
+
     }
 
     public void cancelTimer() {
