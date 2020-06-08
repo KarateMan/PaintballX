@@ -17,6 +17,7 @@
 
 package com.karateman2400.paintballx.game.data.gameinfo;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 import java.util.UUID;
@@ -86,25 +87,6 @@ public class GameArena {
 
     public int getMinPlayers() {
         return minPlayers;
-    }
-
-}
-
-class GameLocation {
-
-    private String world;
-    private double x;
-    private double y;
-    private double z;
-    private float yaw;
-    private float pitch;
-
-    public GameLocation(Location location) {
-        this.x = location.getX();
-        this.y = location.getY();
-        this.z = location.getZ();
-        this.yaw = location.getYaw();
-        this.pitch = location.getPitch();
     }
 
 }

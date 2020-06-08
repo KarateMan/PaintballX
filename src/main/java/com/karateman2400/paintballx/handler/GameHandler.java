@@ -33,9 +33,8 @@ public class GameHandler {
 
     private List<GameObject> gameObjectList = new ArrayList<>();
 
-    public void createNewGame() {
-        // TODO: Choose Random Arena
-        //gameObjectList.add(new GameObject(new GameArena()));
+    public void createNewGame(GameArena arena) {
+        gameObjectList.add(new GameObject(arena));
     }
 
     public void clearAllGames() {

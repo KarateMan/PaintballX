@@ -17,8 +17,11 @@
 
 package com.karateman2400.paintballx.game.listeners;
 
+import com.karateman2400.paintballx.PaintballX;
 import com.karateman2400.paintballx.game.GameObject;
+import com.karateman2400.paintballx.game.data.board.LobbyBoard;
 import com.karateman2400.paintballx.game.data.events.GameJoinEvent;
+import com.karateman2400.paintballx.game.data.events.ScoreboardUpdateEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -39,6 +42,8 @@ public class GameJoinListener implements Listener {
             return;
         }
 
-        // TODO: Handle GameJoin logic
+        gameObject.addPlayer(event.getGamePlayer());
+        PaintballX.getInstance().getServer().getPluginManager().callEvent(new ScoreboardUpdateEvent(new LobbyBoard(gameObject.getGameArena()), gameObject));
+        event.getGamePlayer().getPlayer().teleport(gameObject.getGameArena().getLobbySpawn().toLocation());
     }
 }

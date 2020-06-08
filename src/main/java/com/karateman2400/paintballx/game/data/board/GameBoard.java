@@ -28,10 +28,6 @@ public abstract class GameBoard {
         this.arena = arena;
     }
 
-    public GameArena getArena() {
-        return arena;
-    }
-
     public abstract void updateBoard(GameObject gameObject, int time);
 
 }

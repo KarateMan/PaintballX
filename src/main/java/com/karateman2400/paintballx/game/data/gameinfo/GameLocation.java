@@ -15,23 +15,30 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.karateman2400.paintballx.game.data.playerinfo;
+package com.karateman2400.paintballx.game.data.gameinfo;
 
-import org.bukkit.entity.Player;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 
-public class GamePlayer {
+public class GameLocation {
 
-    private Player player;
+    private String world;
+    private double x;
+    private double y;
+    private double z;
+    private float yaw;
+    private float pitch;
 
-    private int kills = 0;
-    private int deaths = 0;
-    private int coins = 0;
-
-    public GamePlayer(Player player) {
-        this.player = player;
+    public GameLocation(Location location) {
+        this.x = location.getX();
+        this.y = location.getY();
+        this.z = location.getZ();
+        this.yaw = location.getYaw();
+        this.pitch = location.getPitch();
     }
 
-    public Player getPlayer() {
-        return player;
+    public Location toLocation() {
+        return new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
     }
+
 }

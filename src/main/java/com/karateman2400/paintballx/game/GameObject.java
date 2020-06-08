@@ -43,6 +43,14 @@ public class GameObject implements Listener {
         PaintballX.getInstance().getServer().getPluginManager().registerEvents(new ScoreboardUpdateListener(this), PaintballX.getInstance());
     }
 
+    public void addPlayer(GamePlayer player) {
+        gamePlayerList.add(player);
+    }
+
+    public void removePlayer(GamePlayer player) {
+        gamePlayerList.remove(player);
+    }
+
     public boolean isJoinable() {
         if(gameStatus.getGameState() == GameStatus.GameState.WAITING) return true;
 

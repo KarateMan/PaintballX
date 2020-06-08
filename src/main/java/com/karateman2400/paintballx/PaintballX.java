@@ -17,8 +17,13 @@
 
 package com.karateman2400.paintballx;
 
+import com.karateman2400.paintballx.game.data.gameinfo.GameArena;
 import com.karateman2400.paintballx.handler.GameHandler;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PaintballX extends JavaPlugin implements Listener {
@@ -30,6 +35,15 @@ public class PaintballX extends JavaPlugin implements Listener {
     public void onEnable() {
         instance = this;
         gameHandler = new GameHandler();
+        getServer().getPluginManager().registerEvents(this, this);
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) {
+        Location testLocation = new Location(Bukkit.getWorlds().get(0), 1, 2, 3, 4, 5);
+        GameArena testArena = new GameArena("Test Arena", testLocation, testLocation, testLocation, testLocation, 4, 2);
+        gameHandler.createNewGame(testArena);
+        gameHandler.addPlayerToFirstGame(event.getPlayer());
     }
 
     public static PaintballX getInstance() {
